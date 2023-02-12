@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChatState } from '../ContextAPI/ConPro';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Nabar() {
 
@@ -9,36 +9,38 @@ export default function Nabar() {
     const navigate = useNavigate()
     return (
         <>
-            <div className="navbar navbar-expand text-dark shadow-sm rounded">
-                <div className="container text-dark">
+            <div className="navbar navbar-expand  shadow-bottom " style={{ "backgroundColor": "#0b0b13" }}>
+                <div className="container">
 
-                    <Link to="/" className="navbar-brand">WBComp</Link>
+                    <Link to="/" className="navbar-brand  text-light" >WBComp</Link>
 
                     <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" >
+                        <button type="button" class="btn dropdown-toggle  text-light" data-bs-toggle="dropdown" >
                             {
-                                loggedUser ? loggedUser.name :
+                                loggedUser ? String(loggedUser.name).slice(0, 4) :
                                     "Profile"
                             }
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu ">
                             {
                                 loggedUser ?
                                     <div>
                                         <div className="btn ">
-                                            <div className="badge bg-secondary">Email</div>
-                                            {loggedUser.email}
+                                            <div className="btn-sm">
+                                                {String(loggedUser.email).slice(0,20)}
+                                            </div>
                                         </div>
-                                        <hr />
-                                        <li><div class="dropdown-item" onClick={() => {
+                                        <li><div class="dropdown-item btn bg-secondary border-bottom mb-2  text-center border-top" onClick={() => {
                                             localStorage.clear();
+                                            // set_isLogin(false);
                                             navigate("/login");
-                                        }}>Logout</div></li>
+                                        }}>Logout</div>
+                                        </li>
                                         {
                                             loggedUser.admin ?
-                                                <div>
+                                                <div className='text-center bg-secondary' >
                                                     <li>
-                                                        <Link to="/newprod">Add Product</Link>
+                                                        <Link to="/newprod" style={{textDecoration:"none"}} className="btn w-100 text-dark">Add Product</Link>
                                                     </li>
                                                 </div>
                                                 :

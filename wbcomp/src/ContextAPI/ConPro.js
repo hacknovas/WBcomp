@@ -10,6 +10,7 @@ const ChatProvider = (prop) => {
     const [selectedProd, set_SelectedProd] = useState("");
     const [isLogin, set_isLogin] = useState(false);
     const [loggedUser, set_LoggedUser] = useState();
+    const [selectedProd_data, set_SelectedProd_data] = useState({});
 
     useEffect(() => {
         const userinfo = JSON.parse(localStorage.getItem("UserInfo"));
@@ -18,7 +19,7 @@ const ChatProvider = (prop) => {
     }, [navigate])
 
     return (
-        <Myapi.Provider value={{ loggedUser, set_LoggedUser, search_key, set_Search_Key, selectedProd, set_SelectedProd, isLogin, set_isLogin }}>
+        <Myapi.Provider value={{ loggedUser, set_LoggedUser, search_key, set_Search_Key, selectedProd, set_SelectedProd, isLogin, set_isLogin, selectedProd_data, set_SelectedProd_data }}>
             {prop.children}
         </Myapi.Provider>
     )

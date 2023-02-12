@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import { ChatState } from "../ContextAPI/ConPro";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductAdd() {
+
+    const { isLogin, set_isLogin,loggedUser } = ChatState();
+
+    const navigate = useNavigate();
 
     const addProductDetails = async (e) => {
         e.preventDefault();
@@ -14,6 +20,14 @@ export default function ProductAdd() {
             Category: e.target["selection"].value
         })
     }
+
+    useEffect(() => {
+        return () => {
+           if (!(localStorage.getItem("IsAdmin"))){
+                navigate('/')
+            }
+        }
+    }, [loggedUser])
 
     return (
         <>

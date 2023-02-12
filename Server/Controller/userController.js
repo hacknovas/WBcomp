@@ -54,7 +54,6 @@ const getAdmin = async (req, res) => {
 const getUser = async (req, res) => {
     const { Email, Pass } = req.body;
     const user = await User.findOne({ Email });
-    console.log("MAhi")
     if (user && (await user.matchPass(Pass))) {
         res.status(201).json({
             _id: user._id,

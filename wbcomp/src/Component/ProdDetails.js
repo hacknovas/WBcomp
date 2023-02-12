@@ -4,33 +4,33 @@ import { ChatState } from '../ContextAPI/ConPro';
 
 export default function ProdDetatils() {
 
-    const { selectedProd } = ChatState();
+    const { selectedProd, selectedProd_data } = ChatState();
 
+    console.log(selectedProd);
     const [obj, setobj] = useState({
         Links: { "Amazon": "", "Flipkart": "", }, Prices: { "AmazonP": "", "FlipkartP": "" }, Ratings: { "AmazonP": "", "FlipkartP": "" }, Images: { "AmazonP": "" }, Product_Name: "",
     })
 
     const getSingleProduct = async () => {
         const res = await axios.post("/prod/single", {
-            selectedProd
+            selectedProd: localStorage.getItem("OpenProduct")
         })
 
         setobj(res.data);
-
     }
 
     useEffect(() => {
         getSingleProduct();
-    }, [selectedProd])
+    }, [])
 
     return (
         <>
             {
 
-                <div class="card m-5 p-3 shadow " >
-                    <div class="row ">
-                        <div class="col-4 text-center border-bottom border-end shadow">
-                            <img src={obj.Images.AmazonP} class="img-fluid rounded-start" alt="NA" />
+                <div class="card m-5 p-3 shadow " style={{paddingTop:"100vh"}}>
+                    <div class="row" style={{paddingTop:"3vh",paddingBottom:"3vh"}}>
+                        <div class="col-4 text-center shadow-start">
+                            <img src={obj.Images.AmazonP} class="img-fluid " alt="NA" />
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -61,7 +61,7 @@ export default function ProdDetatils() {
                                         </div>
                                     </div>
                                 </div>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text"><small class="text-muted">Last updated month ago</small></p>
                             </div>
                         </div>
                     </div>
