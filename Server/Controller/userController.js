@@ -4,16 +4,10 @@ const generateTokent = require("../config/generateToken")
 
 const newRegister = async (req, res) => {
     const { Name, Email, Pass } = req.body;
-
-    if (!Name || !Email || !Pass) {
-        throw new Error("Please Enter All fields");
-    }
-
     const userExist = await User.findOne({ Email });
 
     if (userExist) {
-        userExist.status(400);
-        throw new Error("User Already created");
+        res.status(401).send(new Error("User Already Created"));
     }
 
     const user = await User.create({
@@ -28,8 +22,7 @@ const newRegister = async (req, res) => {
             token: generateTokent(user._id),
         })
     } else {
-        res.status(400);
-        throw new Error("User Not Found");
+        res.status(400).send(new Error("Invalid Email or_Password"));
     }
 
 }
@@ -46,8 +39,7 @@ const getAdmin = async (req, res) => {
             token: generateTokent(user._id),
         })
     } else {
-        res.status(401);
-        throw new Error("Invalid Email or Password");
+        res.status(401).send(new Error("Invalid Email or Password"));
     }
 }
 
@@ -63,8 +55,8 @@ const getUser = async (req, res) => {
             token: generateTokent(user._id),
         })
     } else {
-        res.status(401);
-        throw new Error("Invalid Email or Password");
+        res.status(401).send(new Error("Invalid Email or Password"));
+        
     }
 }
 

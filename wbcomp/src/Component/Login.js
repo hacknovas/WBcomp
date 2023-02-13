@@ -1,35 +1,42 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { ChatState } from '../ContextAPI/ConPro';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
+    const notify = (msg) => toast(msg);
+
     const [check, Set_check] = useState(false);
-    const { isLogin, set_isLogin } = ChatState();
     const navigate = useNavigate();
 
     const credentialHandler = async (e) => {
         e.preventDefault();
-        if (check) {
-            const res = await axios.post("user/admin/login", {
-                Email: e.target["email"].value,
-                Pass: e.target["pass"].value
-            });
-            localStorage.setItem("UserInfo", JSON.stringify(res.data));
-            localStorage.setItem("IsAdmin", true);
-            // set_isLogin(true);
-            navigate("/")
+        try {
+            if (check) {
+                const res = await axios.post("user/admin/login", {
+                    Email: e.target["email"].value,
+                    Pass: e.target["pass"].value
+                });
+                localStorage.setItem("UserInfo", JSON.stringify(res.data));
+                localStorage.setItem("IsAdmin", true);
+                navigate("/")
+            } else {
+                console.log("mahi1");
 
-        } else {
-            const res = await axios.post("user/login", {
-                Email: e.target["email"].value,
-                Pass: e.target["pass"].value
-            });
-            localStorage.setItem("UserInfo", JSON.stringify(res.data))
+                const res = await axios.post("user/login", {
+                    Email: e.target["email"].value,
+                    Pass: e.target["pass"].value
+                });
 
-            // set_isLogin(true);
-            navigate("/")
+                localStorage.setItem("UserInfo", JSON.stringify(res.data))
+
+                navigate("/")
+            }
+            notify("Login Successfully")
+        } catch (err) {
+            console.log(err);
+            notify("Invalid Email or Password");
         }
 
     }
@@ -56,6 +63,8 @@ export default function Login() {
                     <Link to="/register" className='btn  border-dark' style={{ textDecoration: "none", color: "black" }}>Sign Up</Link>
                 </div>
             </form>
+            <ToastContainer hideProgressBar={false} position="bottom-right" />
+
         </>
     )
 }

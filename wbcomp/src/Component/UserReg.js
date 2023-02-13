@@ -1,17 +1,40 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserReg() {
+
+    const navigate = useNavigate();
 
     const credentialHandler = async (e) => {
         e.preventDefault();
 
-        const res = await axios.post("user/register", {
-            Name: e.target["name"].value,
-            Pass: e.target["pass"].value,
-            Email: e.target["email"].value
-        })
+        try {
+
+
+            if (! e.target["name"].value || !e.target["pass"].value || !e.target["email"].value) {
+                throw Error
+            }
+
+            const res = await axios.post("user/register", {
+                Name: e.target["name"].value,
+                Pass: e.target["pass"].value,
+                Email: e.target["email"].value
+            })
+
+
+            navigate("/login");
+            toast("User Registered Successfuly");
+
+        } catch (error) {
+            if (error.response.status == 401) {
+                toast("User Already Exist.");
+            } else {
+                toast("Invalid Email or Password");
+            }
+        }
     }
 
 
@@ -35,6 +58,7 @@ export default function UserReg() {
                     <Link to="/Login" className='btn border-dark' style={{ textDecoration: "none", color: "black" }}>Login</Link>
                 </div>
             </form>
+            <ToastContainer hideProgressBar={true} position="bottom-right" />
 
         </>
     )

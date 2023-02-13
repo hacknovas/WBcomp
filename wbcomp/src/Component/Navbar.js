@@ -4,45 +4,56 @@ import { useNavigate, Link } from 'react-router-dom';
 
 export default function Nabar() {
 
-    const { isLogin, set_isLogin, loggedUser } = ChatState();
+    const { loggedUser } = ChatState();
 
     const navigate = useNavigate()
     return (
         <>
-            <div className="navbar navbar-expand  shadow-bottom " style={{ "backgroundColor": "#0b0b13" }}>
-                <div className="container">
+            <div className="d-flex mb-3 shadow  justify-content-around" style={{ "backgroundColor": "#161622" }}>
+                <div className='shadow' >
+                    <img src="./images/logo.png" style={{
+                        WebkitFilter: "invert(1)",
+                        filter: "invert(1)",
+                    }} className="" height={"50vh"} />
+                </div>
 
-                    <Link to="/" className="navbar-brand  text-light" >WBComp</Link>
+                <div className='text-light mt-2 p-1 ' onClick={()=>{
+                    navigate("/")
+                }}>
+                    Home
+                </div>
 
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle  text-light" data-bs-toggle="dropdown" >
-                            {
-                                loggedUser ? String(loggedUser.name).slice(0, 4) :
-                                    "Profile"
-                            }
-                        </button>
-                        <ul class="dropdown-menu ">
+
+                <div class="btn-group ">
+                    <div class="btn mt-1 dropdown-toggle text-light" data-bs-toggle="dropdown" >
+                        {
+                            loggedUser ? String(loggedUser.name).slice(0, 4) :
+                                "Profile"
+                        }
+                    </div>
+
+                    <div className=''>
+                        <ul class="dropdown-menu">
                             {
                                 loggedUser ?
                                     <div>
-                                        <div className="btn ">
-                                            <div className="btn-sm">
-                                                {String(loggedUser.email).slice(0,20)}
-                                            </div>
+                                        <div className="text-center shadow border-bottom">
+                                            {String(loggedUser.email).slice(0, 20)}
                                         </div>
-                                        <li><div class="dropdown-item btn bg-secondary border-bottom mb-2  text-center border-top" onClick={() => {
-                                            localStorage.clear();
-                                            // set_isLogin(false);
-                                            navigate("/login");
-                                        }}>Logout</div>
+                                        <li>
+                                            <div class="dropdown-item   shadow border-bottom text-center border-top" onClick={() => {
+                                                localStorage.clear();
+                                                navigate("/login");
+                                            }}>Logout
+                                            </div>
                                         </li>
                                         {
                                             loggedUser.admin ?
-                                                <div className='text-center bg-secondary' >
-                                                    <li>
-                                                        <Link to="/newprod" style={{textDecoration:"none"}} className="btn w-100 text-dark">Add Product</Link>
-                                                    </li>
-                                                </div>
+                                                <li>
+                                                    <div className='text-center shadow' >
+                                                        <Link to="/newprod" style={{ textDecoration: "none" }} className="btn w-100 text-dark">Add Product</Link>
+                                                    </div>
+                                                </li>
                                                 :
                                                 <div></div>
                                         }

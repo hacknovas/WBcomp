@@ -1,12 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { ChatState } from '../ContextAPI/ConPro';
 
 export default function ProdDetatils() {
 
-    const { selectedProd, selectedProd_data } = ChatState();
 
-    console.log(selectedProd);
     const [obj, setobj] = useState({
         Links: { "Amazon": "", "Flipkart": "", }, Prices: { "AmazonP": "", "FlipkartP": "" }, Ratings: { "AmazonP": "", "FlipkartP": "" }, Images: { "AmazonP": "" }, Product_Name: "",
     })
@@ -21,24 +18,24 @@ export default function ProdDetatils() {
 
     useEffect(() => {
         getSingleProduct();
+        console.log("2");
     }, [])
 
     return (
         <>
             {
-
-                <div class="card m-5 p-3 shadow " style={{paddingTop:"100vh"}}>
-                    <div class="row" style={{paddingTop:"3vh",paddingBottom:"3vh"}}>
+                <div class="card m-5 p-3 shadow" style={{ paddingTop: "100vh" }}>
+                    <div class="d-flex flex-wrap flex-row" style={{ paddingTop: "3vh", paddingBottom: "3vh" }}>
                         <div class="col-4 text-center shadow-start">
                             <img src={obj.Images.AmazonP} class="img-fluid " alt="NA" />
                         </div>
                         <div class="col-8">
                             <div class="card-body">
-                                <h5 class="card-title   mb-4">{obj.Product_Name}</h5>
+                                <h5 class="card-title mb-4">{obj.Product_Name}</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                                 <hr />
-                                <div className="d-flex">
-                                    <div className='container mb-2 col-6'>
+                                <div className="d-flex align-content-start flex-wrap">
+                                    <div className='mb-2 col-6 '>
                                         <button type="button" className="btn   border ">
                                             <div className="badge text-dark border-bottom">Amazon</div><br />
                                             <div className="btn">Price:</div>
@@ -49,7 +46,7 @@ export default function ProdDetatils() {
                                         <div className='btn btn-primary mx-5'><a href={obj.Links.Amazon} style={{ textDecoration: "none" }} className="text-light" target="_blank">Visit Site</a></div>
                                     </div>
 
-                                    <div className='container mb-2 col-6'>
+                                    <div className='mb-2 col-6'>
                                         <button type="button" className="btn border">
                                             <div className="badge border-bottom text-dark">Flipkart</div><br />
                                             <div className="btn">Price:</div>

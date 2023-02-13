@@ -4,7 +4,7 @@ import { ChatState } from '../ContextAPI/ConPro';
 import axios from 'axios';
 
 export default function SearchRes() {
-    const { search_key, set_Search_Key } = ChatState();
+    const { search_key,  } = ChatState();
 
     const [display_Res, set_Display_Res] = useState([]);
     const [display_searchKD, set_display_searchKD] = useState([]);
@@ -19,7 +19,6 @@ export default function SearchRes() {
 
                 set_display_searchKD(result.data);
 
-                // console.log(result.data);
             } catch (error) {
 
             }
@@ -46,24 +45,20 @@ export default function SearchRes() {
     return (
         <>
             <div className="container-fluid" >
-                <div className="row">
-                    <div className="col-2 bg-light" style={{ "paddingTop": "25vh" ,paddingBottom:"25vh"}}>
-                        <div className="container" >
-                            <div className="Menu ">
-                                <div href="#" className=" text-dark w-100 selected btn-sm text-secondary shadow rounded text-center">Category</div>
-                                <div className="rounded my-3">
-                                    <div className="btn w-100 my-3 rounded text-center shadow-lg" onClick={() => {
-                                        seachbycategory("Mobile")
-                                    }}>Mobiles</div>
-                                    <div className="btn w-100 my-3 rounded  text-center shadow-lg" onClick={() => {
-                                        seachbycategory("Electronics");
-                                    }} >Electronics</div>
-                                    <div className="btn w-100 my-3 rounded text-center shadow-lg" onClick={() => {
-                                        seachbycategory("Fashion");
+                <div className="d-flex align-items flex-row flex-wrap">
+                    <div className="col-2 bg-light rounded my-2 p-2">
+                        <div className=" text-dark w-100 selected  text-secondary mt-3 border-bottom rounded text-center">Category</div>
+                        <div className="rounded  my-3">
+                            <div className="btn w-100 my-3 rounded text-center shadow-lg" onClick={() => {
+                                seachbycategory("Mobile")
+                            }}>Mobiles</div>
+                            <div className="btn w-100 my-3 rounded  text-center shadow-lg" onClick={() => {
+                                seachbycategory("Electronics");
+                            }} >Electronics</div>
+                            <div className="btn w-100 my-3 rounded text-center shadow-lg" onClick={() => {
+                                seachbycategory("Fashion");
 
-                                    }}>Fashion</div>
-                                </div>
-                            </div>
+                            }}>Fashion</div>
                         </div>
                     </div>
                     <div className="col-10">
@@ -80,26 +75,26 @@ export default function SearchRes() {
 
                             }}>
                                 <input class="form-control my-2" type="search" name="search" placeholder="Search" aria-label="Search" required />
-                                <button class="btn btn-secondary border mx-2 " type="submit">Search</button>
+                                <button class="btn btn-sm rounded py-0 btn-outline-success border mx-2 " type="submit">Search</button>
                             </form>
                         </div>
                         <div className='container'>
-                            <div className="text-dark my-2 mx-2 ">
+                            <div className="text-light my-2 mx-2 ">
                                 RESULTS
                             </div>
-                            <div className="d-flex flex-row justify-content-around">
+                            <div className="d-flex flex-row justify-content-around flex-wrap">
                                 {
                                     display_searchKD.map((res, i) => {
-                                        return <DisplayProd key={i} id={res._id} name={res.Product_Name} image={res.Images.AmazonP} allData={res} />
+                                        return <DisplayProd key={i} id={res._id} name={res.Product_Name} image={res.Images.AmazonP}  />
                                     })
                                 }
                             </div>
                         </div>
                         <hr />
-                        <div className="container my-2 d-flex justify-content-around flex-row">
+                        <div className="d-flex my-2 d-flex justify-content-around flex-row flex-wrap">
                             {
                                 display_Res.map((res, i) => {
-                                    return <DisplayProd key={i} id={res._id} name={res.Product_Name} image={res.Images.AmazonP} allData={res} />
+                                    return <DisplayProd key={i} id={res._id} name={res.Product_Name} image={res.Images.AmazonP} />
                                 })
                             }
                         </div>
