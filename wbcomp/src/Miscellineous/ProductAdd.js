@@ -1,19 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ChatState } from "../ContextAPI/ConPro";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import { Bars, ColorRing } from "react-loader-spinner";
 
 
 export default function ProductAdd() {
 
     const { loggedUser } = ChatState();
+    const [loading, set_loading] = useState(false);
 
     const navigate = useNavigate();
 
     const addProductDetails = async (e) => {
         e.preventDefault();
 
+        set_loading(true);
         try {
             const res = await axios.post("prod/addProd", {
                 name: e.target["names"].value,
@@ -27,6 +30,7 @@ export default function ProductAdd() {
         } catch (error) {
             toast("Internal Server Error");
         }
+        set_loading(false);
 
     }
 
@@ -42,6 +46,9 @@ export default function ProductAdd() {
     return (
         <>
             <div className="row container-fluid py-5">
+
+
+
                 <div className="col-7">
                     <div className="m-5 ">
                         <form onSubmit={addProductDetails} className="border-bottom d-flex flex-column text-center mb-3  pb-2 px-2 rounded">
@@ -73,7 +80,18 @@ export default function ProductAdd() {
                                 </select>
                             </div>
 
-                            <input type="submit" className="mt-3 btn btn-sm text-light border" value="Add Product" />
+                            <input type="submit" className={`mt-3 btn btn-sm text-light border ${!loading ? "" : "d-none"}`} value="Add Product" />
+                            <div className={` ${loading ? "w-100 text-center btn " : "d-none"}`} id='makenone' >
+                                <Bars
+                                    height="30"
+                                    width="80"
+                                    color="orange"
+                                    ariaLabel="bars-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={loading}
+                                />
+                            </div>
                         </form>
                     </div>
                 </div>
