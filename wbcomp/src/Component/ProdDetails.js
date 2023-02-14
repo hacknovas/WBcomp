@@ -26,35 +26,35 @@ export default function ProdDetatils() {
             {
                 <div class="card m-5 p-3 shadow" style={{ paddingTop: "100vh" }}>
                     <div class="d-flex flex-wrap flex-row" style={{ paddingTop: "3vh", paddingBottom: "3vh" }}>
-                        <div class="col-4 text-center shadow-start">
+                        <div class="col-4 text-center ">
                             <img src={obj.Images.AmazonP} class="img-fluid " alt="NA" />
                         </div>
                         <div class="col-8">
                             <div class="card-body">
                                 <h5 class="card-title mb-4">{obj.Product_Name}</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <hr />
-                                <div className="d-flex align-content-start flex-wrap">
-                                    <div className='mb-2 col-6 '>
-                                        <button type="button" className="btn   border ">
+                                <div><hr /></div>
+                                <div className="d-flex flex-row flex-wrap justify-content-center ">
+                                    <div className='mx-2 my-2 text-center'>
+                                        <button type="button " className="btn border w-100">
                                             <div className="badge text-dark border-bottom">Amazon</div><br />
                                             <div className="btn">Price:</div>
                                             <div className="btn">{obj.Prices.AmazonP}</div><hr />
                                             Rating:
                                             <div className="">{obj.Ratings.AmazonP}</div>
                                         </button>
-                                        <div className='btn btn-primary mx-5'><a href={obj.Links.Amazon} style={{ textDecoration: "none" }} className="text-light" target="_blank">Visit Site</a></div>
+                                        <div className='btn btn-primary w-100 mt-2  '><a href={obj.Links.Amazon} style={{ textDecoration: "none" }} className=" text-light " target="_blank">Visit Site</a></div>
                                     </div>
 
-                                    <div className='mb-2 col-6'>
-                                        <button type="button" className="btn border">
+                                    <div className='mx-2 my-2 text-center'>
+                                        <button type="button" className="btn border w-100   ">
                                             <div className="badge border-bottom text-dark">Flipkart</div><br />
                                             <div className="btn">Price:</div>
                                             <div className="btn">{obj.Prices.FlipkartP}</div><hr />
                                             Rating:
                                             <div className="">{obj.Ratings.FlipkartP}</div>
                                         </button>
-                                        <div className='btn btn-primary mx-5'><a href={obj.Links.Flipkart} style={{ textDecoration: "none" }} className="text-light" target="_blank">Visit Site</a>
+                                        <div className='btn btn-primary w-100 mt-2  '><a href={obj.Links.Flipkart} style={{ textDecoration: "none" }} className="text-light" target="_blank">Visit Site</a>
                                         </div>
                                     </div>
                                 </div>

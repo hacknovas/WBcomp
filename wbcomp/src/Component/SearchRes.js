@@ -4,7 +4,7 @@ import { ChatState } from '../ContextAPI/ConPro';
 import axios from 'axios';
 
 export default function SearchRes() {
-    const { search_key,  } = ChatState();
+    const { search_key, } = ChatState();
 
     const [display_Res, set_Display_Res] = useState([]);
     const [display_searchKD, set_display_searchKD] = useState([]);
@@ -45,17 +45,17 @@ export default function SearchRes() {
     return (
         <>
             <div className="container-fluid" >
-                <div className="d-flex align-items flex-row flex-wrap">
-                    <div className="col-2 bg-light rounded my-2 p-2">
-                        <div className=" text-dark w-100 selected  text-secondary mt-3 border-bottom rounded text-center">Category</div>
-                        <div className="rounded  my-3">
-                            <div className="btn w-100 my-3 rounded text-center shadow-lg" onClick={() => {
+                <div className="d-flex align-items flex-wrap">
+                    <div className="col-2 bg-light rounded my-2 p-2 " >
+                        <div className=" selected text-light bg-dark mt-3 border-bottom shadow-lg text-center">Category</div>
+                        <div className=" rounded my-4">
+                            <div className=" my-3 rounded text-center shadow-lg" onClick={() => {
                                 seachbycategory("Mobile")
                             }}>Mobiles</div>
-                            <div className="btn w-100 my-3 rounded  text-center shadow-lg" onClick={() => {
+                            <div className="  my-3 rounded  text-center shadow-lg" onClick={() => {
                                 seachbycategory("Electronics");
                             }} >Electronics</div>
-                            <div className="btn w-100 my-3 rounded text-center shadow-lg" onClick={() => {
+                            <div className=" my-3 rounded text-center shadow-lg" onClick={() => {
                                 seachbycategory("Fashion");
 
                             }}>Fashion</div>
@@ -79,13 +79,13 @@ export default function SearchRes() {
                             </form>
                         </div>
                         <div className='container'>
-                            <div className="text-light my-2 mx-2 ">
+                            <div className="btn text-light my-2 mx-2 ">
                                 RESULTS
                             </div>
-                            <div className="d-flex flex-row justify-content-around flex-wrap">
+                            <div className="d-flex flex-row justify-content-around flex-wrap" >
                                 {
                                     display_searchKD.map((res, i) => {
-                                        return <DisplayProd key={i} id={res._id} name={res.Product_Name} image={res.Images.AmazonP}  />
+                                        return <DisplayProd key={i} id={res._id} name={res.Product_Name} image={res.Images.AmazonP} />
                                     })
                                 }
                             </div>

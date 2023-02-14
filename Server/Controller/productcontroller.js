@@ -90,7 +90,6 @@ const singleProduct = async (req, res) => {
         if (updated_Data.AmazonP_Price.length > 1 && updated_Data.FlipkartP_Price.length > 1) {
             if (updated_Data.AmazonP_Price != data.Prices.AmazonP || data.Prices.FlipkartP != updated_Data.FlipkartP_Price) {
                 const result = await data.getDetailFrom();
-                console.log("Mahi");
             }
         }
     }, 3000)

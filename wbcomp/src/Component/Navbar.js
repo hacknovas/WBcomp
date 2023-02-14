@@ -17,7 +17,7 @@ export default function Nabar() {
                     }} className="" height={"50vh"} />
                 </div>
 
-                <div className='text-light mt-2 p-1 ' onClick={()=>{
+                <div className='btn text-light mt-2 p-1 ' onClick={()=>{
                     navigate("/")
                 }}>
                     Home

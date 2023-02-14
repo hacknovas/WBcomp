@@ -43,7 +43,7 @@ export default function Login() {
 
     return (
         <>
-            <form onSubmit={credentialHandler} style={{ "height": "100vh", "width": "50%", "paddingTop": "25vh" }} className="container justify-content-center my-5 shadow-sm " >
+            <form onSubmit={credentialHandler} style={{ "height": "100vh", "width": "50%", "paddingTop": "25vh" }} className="container justify-content-center my-5 shadow-sm text-light" >
                 <div class="form-group" >
                     <label htmlFor="exampleInputEmail1" className='my-2'>Email Address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' placeholder="Enter email" />

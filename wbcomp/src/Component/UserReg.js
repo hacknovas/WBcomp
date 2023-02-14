@@ -40,7 +40,7 @@ export default function UserReg() {
 
     return (
         <>
-            <form onSubmit={credentialHandler} style={{ "height": "100vh", "width": "50%", "paddingTop": "25vh" }} className="container justify-content-center my-5 shadow-sm " >
+            <form onSubmit={credentialHandler} style={{ "height": "100vh", "width": "50%", "paddingTop": "25vh" }} className="container justify-content-center my-5 shadow-sm text-light" >
                 <div class="form-group" >
                     <label for="exampleInputEmail1 " className='my-2'>Name</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='name' placeholder="Enter Name" />

@@ -19,10 +19,10 @@ export default function Home() {
             <div>
                 {
                     search_key == [] ?
-                        <div className="w-100 " style={{ "height": "100vh", "padding": "25vh" }}>
-                            <form class="d-flex " role="search" onSubmit={handleSearch}>
+                        <div className="d-flex justify-content-center align-items-center "style={{height:"70vh"}}>
+                            <form class="d-flex" style={{ height: "5vh", width: "60vw" }} role="search" onSubmit={handleSearch}>
                                 <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn text-light btn-outline-success" type="submit">Search</button>
+                                <button class="btn text-light btn-outline-success flex-wrap" type="submit">Search</button>
                             </form>
                         </div>
                         :
