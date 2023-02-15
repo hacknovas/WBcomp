@@ -3,8 +3,7 @@ import axios from "axios";
 import { ChatState } from "../ContextAPI/ConPro";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import { Bars, ColorRing } from "react-loader-spinner";
-
+import { Bars, } from "react-loader-spinner";
 
 export default function ProductAdd() {
 

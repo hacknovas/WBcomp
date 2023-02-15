@@ -22,7 +22,7 @@ export default function SearchRes() {
                 set_display_searchKD(result.data);
 
             } catch (error) {
-
+                console.log("Error Occured in Serach Results");
             }
         }
         const result = await axios.get("prod/search");
@@ -31,16 +31,13 @@ export default function SearchRes() {
 
     useEffect(() => {
         set_loading(true);
-        const dt=document.querySelector("#makenone");
+        const dt = document.querySelector("#makenone");
 
-        setTimeout(()=>{
+        setTimeout(() => {
             getAllProducts();
-            dt.style.display="none";
+            dt.style.display = "none";
             set_loading(false);
-
-            // dt.style.display="none"
-            
-        },1000)
+        }, 1000)
 
     }, [search_key]);
 
@@ -98,7 +95,7 @@ export default function SearchRes() {
                         </div>
 
                         {/*  */}
-                        <div className={`d-flex justify-content-center align-items-center ${ loading?"":"d-none" }`}  id='makenone' style={{height:"60vh"}}>
+                        <div className={`d-flex justify-content-center align-items-center ${loading ? "" : "d-none"}`} id='makenone' style={{ height: "60vh" }}>
                             <ColorRing
                                 visible={loading}
                                 height="80"
@@ -135,7 +132,6 @@ export default function SearchRes() {
                                 </div>
                         }
                     </div>
-
                 </div>
             </div>
         </>
